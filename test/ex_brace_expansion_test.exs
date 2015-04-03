@@ -3,6 +3,8 @@ defmodule ExBraceExpansionTest do
 
   import ExBraceExpansion
 
+  doctest ExBraceExpansion
+
   test "basic" do
     assert expand("abcd") == ["abcd"]
   end

@@ -5,9 +5,54 @@ defmodule ExBraceExpansion do
   @esc_comma "\0COMMA#{:random.uniform}\0"
   @esc_period "\0PERIOD#{:random.uniform}\0"
 
+  @moduledoc """
+  Brace expansion[1], as known from sh/bash, in JavaScript.
+
+  [1]: https://www.gnu.org/software/bash/manual/html_node/Brace-Expansion.html
+  """
+
+
   import ExBraceExpansion.BalancedMatch
   import ExBraceExpansion.ConcatMap
 
+  @doc ~S"""
+  expands the `str` into a list of patterns
+
+  ## Examples
+      iex> import ExBraceExpansion
+      nil
+
+      iex> expand("file-{a,b,c}.jpg")
+      ["file-a.jpg", "file-b.jpg", "file-c.jpg"]
+
+      iex> expand("-v{,,}")
+      ["-v", "-v", "-v"]
+
+      iex> expand("file{0..2}.jpg")
+      ["file0.jpg", "file1.jpg", "file2.jpg"]
+
+      iex> expand("file-{a..c}.jpg")
+      ["file-a.jpg", "file-b.jpg", "file-c.jpg"]
+
+      iex> expand("file{2..0}.jpg")
+      ["file2.jpg", "file1.jpg", "file0.jpg"]
+
+      iex> expand("file{0..4..2}.jpg")
+      ["file0.jpg", "file2.jpg", "file4.jpg"]
+
+      iex> expand("file-{a..e..2}.jpg")
+      ["file-a.jpg", "file-c.jpg", "file-e.jpg"]
+
+      iex> expand("file{00..10..5}.jpg")
+      ["file00.jpg", "file05.jpg", "file10.jpg"]
+
+      iex> expand("{{A..C},{a..c}}")
+      ["A", "B", "C", "a", "b", "c"]
+
+      iex> expand("ppp{,config,oe{,conf}}")
+      ["ppp", "pppconfig", "pppoe", "pppoeconf"]
+
+  """
   def expand(str) do
     if str == nil do
       []
@@ -67,7 +112,7 @@ defmodule ExBraceExpansion do
     |> put_in([:n], Regex.split(~r/\.\./, m.body))
   end
 
-  defp expand_step1(%{is_sequence: is_sequence, m: m} = state) do
+  defp expand_step1(%{m: m} = state) do
     state
     |> put_in([:n], parse_comma_parts(m.body))
   end
