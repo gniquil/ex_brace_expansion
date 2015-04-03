@@ -34,11 +34,7 @@ defmodule ExBraceExpansion.Mixfile do
     """
     Brace expansion, as known from sh/bash, in Elixir. Quick example:
 
-    iex> ExBraceExpansion.expand("file-{a,b,c}.jpg")
-    ["file-a.jpg", "file-b.jpg", "file-c.jpg"]
-
-    iex> expand("file{00..10..5}.jpg")
-    ["file00.jpg", "file05.jpg", "file10.jpg"]
+    ExBraceExpansion.expand("file-{a,b,c}.jpg") => ["file-a.jpg", "file-b.jpg", "file-c.jpg"]
     """
   end
 
