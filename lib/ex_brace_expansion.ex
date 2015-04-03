@@ -6,9 +6,8 @@ defmodule ExBraceExpansion do
   @esc_period "\0PERIOD#{:random.uniform}\0"
 
   @moduledoc """
-  Brace expansion[1], as known from sh/bash, in JavaScript.
+  [Brace expansion](https://www.gnu.org/software/bash/manual/html_node/Brace-Expansion.html), as known from sh/bash, in JavaScript. This is a port of the [brace-expasion](https://github.com/juliangruber/brace-expansion) project.
 
-  [1]: https://www.gnu.org/software/bash/manual/html_node/Brace-Expansion.html
   """
 
 
