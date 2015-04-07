@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ExBraceExpansion</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+    <link rel="stylesheet" href="css/elixir.css" type="text/css" media="screen" charset="utf-8" />
+    <script type="text/javascript" charset="utf-8">
+      relpath = '';
+      if (relpath != '') relpath += '/';
+    </script>
+
+    <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/highlight.pack.js"></script>
+    <script type="text/javascript" charset="utf-8">
+      hljs.initHighlightingOnLoad();
+      hljs.configure({languages: []}); //disable autodetect
+    </script>
+  </head>
+
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+
+    <section id="content">
+      <div class="breadcrumbs">ex_brace_expansion v0.0.1 &rarr; <a href="overview.html">Overview</a> &rarr; <a href="ExBraceExpansion.html">ExBraceExpansion</a></div>
+      <h1>
+        ExBraceExpansion
+        
+      </h1>
+
+      <ul class="summary_links">
+        
+          <li><a href="#summary">Summary</a></li>
+        
+        
+        
+          <li><a href="#functions_details">Functions</a></li>
+        
+        
+        
+      </ul>
+
+      
+        <section id="moduledoc" class="docstring">
+          <p><a href="https://www.gnu.org/software/bash/manual/html_node/Brace-Expansion.html">Brace expansion</a>, as known from sh/bash, in Elixir. This is a port of <a href="https://github.com/juliangruber/brace-expansion">brace-expasion</a> javascript project.</p>
+
+        </section>
+      
+
+      
+
+      
+        <h2 id="summary">Summary<span class="detail_header_links"><a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a></span></h2>
+        <table class="summary">
+          <tr>
+  <td class="summary_signature"><a href="#expand/1">expand(str)</a></td>
+  
+    <td class="summary_synopsis"><p>expands the <code>str</code> into a list of patterns</p>
+</td>
+  
+</tr>
+
+        </table>
+      
+
+      
+
+      
+        <section id="functions_details" class="details_list">
+          <h2>Functions</h2>
+          <section class="detail">
+  <div class="detail_header" id="expand/1">
+    <span class="signature"><strong>expand(str)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#expand/1" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
+  
+  <section class="docstring">
+    <p>expands the <code>str</code> into a list of patterns</p>
+
+<h2>Examples</h2>
+
+<pre><code class="iex elixir">iex&gt; import ExBraceExpansion
+nil
+
+iex&gt; expand(&quot;file-{a,b,c}.jpg&quot;)
+[&quot;file-a.jpg&quot;, &quot;file-b.jpg&quot;, &quot;file-c.jpg&quot;]
+
+iex&gt; expand(&quot;-v{,,}&quot;)
+[&quot;-v&quot;, &quot;-v&quot;, &quot;-v&quot;]
+
+iex&gt; expand(&quot;file{0..2}.jpg&quot;)
+[&quot;file0.jpg&quot;, &quot;file1.jpg&quot;, &quot;file2.jpg&quot;]
+
+iex&gt; expand(&quot;file-{a..c}.jpg&quot;)
+[&quot;file-a.jpg&quot;, &quot;file-b.jpg&quot;, &quot;file-c.jpg&quot;]
+
+iex&gt; expand(&quot;file{2..0}.jpg&quot;)
+[&quot;file2.jpg&quot;, &quot;file1.jpg&quot;, &quot;file0.jpg&quot;]
+
+iex&gt; expand(&quot;file{0..4..2}.jpg&quot;)
+[&quot;file0.jpg&quot;, &quot;file2.jpg&quot;, &quot;file4.jpg&quot;]
+
+iex&gt; expand(&quot;file-{a..e..2}.jpg&quot;)
+[&quot;file-a.jpg&quot;, &quot;file-c.jpg&quot;, &quot;file-e.jpg&quot;]
+
+iex&gt; expand(&quot;file{00..10..5}.jpg&quot;)
+[&quot;file00.jpg&quot;, &quot;file05.jpg&quot;, &quot;file10.jpg&quot;]
+
+iex&gt; expand(&quot;{{A..C},{a..c}}&quot;)
+[&quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;a&quot;, &quot;b&quot;, &quot;c&quot;]
+
+iex&gt; expand(&quot;ppp{,config,oe{,conf}}&quot;)
+[&quot;ppp&quot;, &quot;pppconfig&quot;, &quot;pppoe&quot;, &quot;pppoeconf&quot;]
+</code></pre>
+
+  </section>
+  
+</section>
+
+        </section>
+      
+
+      
+
+      
+    </section>
+  </body>
+</html>

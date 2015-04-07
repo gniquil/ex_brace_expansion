@@ -27,7 +27,10 @@ defmodule ExBraceExpansion.Mixfile do
   #
   # Type `mix help deps` for more examples and options
   defp deps do
-    []
+    [
+      {:ex_doc, "~> 0.7", only: :dev},
+      {:markdown, github: "devinus/markdown"}
+    ]
   end
 
   defp description do
@@ -42,7 +45,8 @@ defmodule ExBraceExpansion.Mixfile do
     [
       files: ["lib", "mix.exs", "README*", "LICENSE*"],
       contributors: ["Frank Liu"],
-      links: %{"GitHub" => "https://github.com/gniquil/ex_brace_expansion"}
+      links: %{"GitHub" => "https://github.com/gniquil/ex_brace_expansion"},
+      licenses: ["MIT"]
     ]
   end
 end
