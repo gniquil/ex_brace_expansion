@@ -34,6 +34,6 @@ defmodule ConcatMapTest do
   end
 
   test "nils" do
-    assert concat_map(["a", "b", "c", "d"], fn _ -> end) == [ nil, nil, nil, nil ]
+    assert concat_map(["a", "b", "c", "d"], fn _ -> nil; end) == [ nil, nil, nil, nil ]
   end
 end
