@@ -19,7 +19,7 @@ defmodule ExBraceExpansion do
 
   ## Examples
       iex> import ExBraceExpansion
-      nil
+      ExBraceExpansion
 
       iex> expand("file-{a,b,c}.jpg")
       ["file-a.jpg", "file-b.jpg", "file-c.jpg"]
@@ -224,9 +224,10 @@ defmodule ExBraceExpansion do
         [post_parts_hd | post_parts_tail] = post_parts
         p = List.update_at(p, length(p) - 1, fn val -> val <> post_parts_hd end)
         p = p ++ post_parts_tail
+        [] ++ p
+      else
+        [] ++ p
       end
-
-      [] ++ p
     end
   end
 
@@ -234,7 +235,7 @@ defmodule ExBraceExpansion do
     try do
       String.to_integer(val)
     rescue
-      _ -> hd(to_char_list(val))
+      _ -> hd(to_charlist(val))
     end
   end
 
@@ -256,13 +257,16 @@ defmodule ExBraceExpansion do
       if need > 0 do
         front_padding = Enum.join(Enum.map(0..(need-1), fn _ -> "0" end), "")
         if i < 0 do
-          c = "-" <> front_padding <> String.slice(c, 1, String.length(c))
+          "-" <> front_padding <> String.slice(c, 1, String.length(c))
         else
-          c = front_padding <> c
+          front_padding <> c
         end
+      else
+        c
       end
+    else
+      c
     end
-    c
   end
 
 end
